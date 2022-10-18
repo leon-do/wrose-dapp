@@ -5,7 +5,7 @@ export default function Withdraw({ wrose }) {
   const [to, setTo] = useState("0xdA064B1Cef52e19caFF22ae2Cc1A4e8873B8bAB0");
 
   async function metaWithdraw() {
-    const reward = 0.1 * amount;
+    const reward = 0.01 * amount;
     // fetch replay nonce
     const nonce = await fetch("/api/replayNonce", {
       method: "POST",
