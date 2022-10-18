@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Deposit({ wrose }) {
-  const [amount, setAmount] = useState("0.1");
+  const [amount, setAmount] = useState("1");
 
   async function deposit() {
     const txHash = await wrose.deposit(amount);

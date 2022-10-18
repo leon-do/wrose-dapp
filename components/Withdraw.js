@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function Withdraw({ wrose }) {
-  const [amount, setAmount] = useState("0.1");
+  const [amount, setAmount] = useState("1");
 
   async function withdraw() {
     const txHash = await wrose.withdraw(amount);
