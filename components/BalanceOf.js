@@ -18,7 +18,7 @@ export default function Balance({ wrose }) {
   return (
     <>
       <div>
-        <button onClick={getBalance}>Balance: {balance}</button>
+        <button onClick={getBalance}>WROSE Balance: {balance}</button>
       </div>
     </>
   );
