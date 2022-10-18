@@ -12,7 +12,7 @@ export default function Balance({ wrose }) {
       },
       body: JSON.stringify({ address: await wrose.signer.getAddress() }),
     }).then((res) => res.json());
-    setBalance(balanceOf.response);
+    setBalance(Math.round(balanceOf.response * 100) / 100);
   }
 
   return (
