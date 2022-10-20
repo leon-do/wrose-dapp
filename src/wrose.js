@@ -17,12 +17,12 @@ export default class WROSE {
     return ethers.utils.formatEther(balance);
   }
 
-  async deposit(_amount) {
+  async wrap(_amount) {
     const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount) });
     return receipt.hash;
   }
 
-  async withdraw(_amount) {
+  async unwrap(_amount) {
     const receipt = await this.contract["withdraw"](ethers.utils.parseEther(_amount));
     return receipt.hash;
   }
@@ -42,7 +42,6 @@ export default class WROSE {
   async relayMetaWithdraw(_signature, _to, _value, _nonce, _reward) {
     const value = ethers.utils.parseEther(_value);
     const reward = ethers.utils.parseEther(_reward);
-    const signerAddress = await this.signer.getAddress();
     const receipt = await this.contract["metaWithdraw"](_signature, _to, value, _nonce, reward);
     return receipt;
   }

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 export default function Balance({ wrose }) {
   const [balance, setBalance] = useState(null);
 
+  getBalance();
   async function getBalance() {
-    // const balance = await wrose.balanceOf();
     const balanceOf = await fetch("/api/balanceOf", {
       method: "POST",
       headers: {
@@ -13,13 +13,13 @@ export default function Balance({ wrose }) {
       body: JSON.stringify({ address: await wrose.signer.getAddress() }),
     }).then((res) => res.json());
     setBalance(Math.round(balanceOf.response * 100) / 100);
+    await new Promise((resolve) => setTimeout(resolve, 9999));
+    getBalance();
   }
 
   return (
     <>
-      <div>
-        <button onClick={getBalance}>WROSE Balance: {balance}</button>
-      </div>
+      <div>WROSE Balance: {balance}</div>
     </>
   );
 }
