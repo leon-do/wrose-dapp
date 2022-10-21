@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Balance({ wrose }) {
+export default function BalanceOfWrose({ wrose }) {
   const [balance, setBalance] = useState(null);
 
   getBalance();
@@ -12,14 +12,14 @@ export default function Balance({ wrose }) {
       },
       body: JSON.stringify({ address: await wrose.signer.getAddress() }),
     }).then((res) => res.json());
-    setBalance(Math.round(balanceOf.response * 100) / 100);
-    await new Promise((resolve) => setTimeout(resolve, 9999));
+    setBalance(Math.round(balanceOf.response * 10000) / 10000);
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     getBalance();
   }
 
   return (
     <>
-      <div>WROSE Balance: {balance}</div>
+      <div className="text-sm mt-2">Balance: {balance}</div>
     </>
   );
 }
