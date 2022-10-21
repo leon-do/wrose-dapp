@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { ethers } from "ethers";
+import getBalanceOfRose from "../src/getBalanceOfRose";
 
 export default function BalanceOfRose({ wrose }) {
   const [balance, setBalance] = useState(null);
 
   getBalance();
   async function getBalance() {
-    const wei = await wrose.signer.getBalance();
-    const balanceOf = ethers.utils.formatEther(wei);
-    setBalance((Math.round(balanceOf * 10000) / 10000).toString());
+    const balance = await getBalanceOfRose(wrose);
+    setBalance(balance.toString());
     await new Promise((resolve) => setTimeout(resolve, 5000));
     getBalance();
   }

@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 import BalanceOfRose from "../components/BalanceOfRose";
 import BalanceOfWrose from "../components/BalanceOfWrose";
 import ValueOfRose from "../components/ValueOfRose";
+import getBalanceOfRose from "../src/getBalanceOfRose";
 
 export default function Wrap() {
   const [signer, setSigner] = useState(null);
@@ -20,11 +21,23 @@ export default function Wrap() {
     }
   }
 
+  async function wrap() {
+    if (!(await isValidAmount())) return alert("Amount exceeds balance");
+    const transactionHash = await wrose.wrap(amount);
+    console.log({ transactionHash });
+  }
+
+  async function isValidAmount() {
+    const balance = await getBalanceOfRose(wrose);
+    // leave a lil bit of gas
+    return amount <= balance - 0.005;
+  }
+
   return (
     <>
       <Head>
-        <title>WROSE Wrap</title>
-        <meta name="description" content="Wrapping Wrap Rose WROSE" />
+        <title>Wrapped Rose</title>
+        <meta name="description" content="Wrap Rose WROSE on Oasis Sapphire" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
@@ -75,7 +88,7 @@ export default function Wrap() {
                 Connect Wallet
               </button>
             ) : (
-              <button onClick={() => connect()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
+              <button onClick={() => wrap()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
                 Wrap
               </button>
             )}
