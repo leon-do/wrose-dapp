@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function Withdraw({ wrose }) {
+export default function Wrap({ wrose }) {
   const [amount, setAmount] = useState("1");
 
-  async function withdraw() {
-    const txHash = await wrose.withdraw(amount);
+  async function wrap() {
+    const txHash = await wrose.wrap(amount);
     console.log(txHash);
   }
 
@@ -12,7 +12,7 @@ export default function Withdraw({ wrose }) {
     <>
       <div>
         <input value={amount} onChange={(e) => setAmount(e.target.value)} />
-        <button onClick={withdraw}>Withdraw</button>
+        <button onClick={wrap}>Wrap</button>
       </div>
     </>
   );
