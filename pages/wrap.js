@@ -5,7 +5,7 @@ import WROSE from "../src/wrose";
 import Nav from "../components/Nav";
 import BalanceOfRose from "../components/BalanceOfRose";
 import BalanceOfWrose from "../components/BalanceOfWrose";
-import PriceOfRose from "../components/PriceOfRose";
+import ValueOfRose from "../components/ValueOfRose";
 
 export default function Wrap() {
   const [signer, setSigner] = useState(null);
@@ -14,8 +14,10 @@ export default function Wrap() {
 
   async function connect() {
     const signer = await web3Onboard();
-    setSigner(signer);
-    setWrose(new WROSE(signer));
+    if (signer) {
+      setSigner(signer);
+      setWrose(new WROSE(signer));
+    }
   }
 
   return (
@@ -36,8 +38,8 @@ export default function Wrap() {
               <tbody>
                 <tr>
                   <td className="pl-4 py-3 w-2/3">
-                    <input onChange={(e) => setAmount(e.target.value)} className="text-4xl rounded-md w-full bg-transparent focus:outline-none" placeholder="0" />
-                    {wrose ? <PriceOfRose amount={amount} /> : <></>}
+                    <input disabled={!signer} type="number" onChange={(e) => setAmount(e.target.value)} className="text-4xl rounded-md w-full bg-transparent focus:outline-none" placeholder="0" />
+                    {wrose ? <ValueOfRose amount={amount} /> : <></>}
                   </td>
                   <td className="text-right pr-4">
                     <div className="text-xl">ROSE</div>
@@ -55,8 +57,8 @@ export default function Wrap() {
               <tbody>
                 <tr>
                   <td className="pl-4 py-3 w-2/3">
-                    <input disabled className="text-4xl rounded-md w-full bg-transparent focus:outline-none" placeholder="0" value={amount} />
-                    {wrose ? <PriceOfRose amount={amount} /> : <></>}
+                    <input disabled className="text-4xl rounded-md w-full bg-transparent focus:outline-none" placeholder={amount || 0} />
+                    {wrose ? <ValueOfRose amount={amount} /> : <></>}
                   </td>
                   <td className="text-right pr-4">
                     <div className="text-xl">WROSE</div>
@@ -68,9 +70,15 @@ export default function Wrap() {
           </div>
 
           <div>
-            <button onClick={() => connect()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
-              Connect Wallet
-            </button>
+            {!signer ? (
+              <button onClick={() => connect()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
+                Connect Wallet
+              </button>
+            ) : (
+              <button onClick={() => connect()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
+                Wrap
+              </button>
+            )}
           </div>
         </div>
       </div>

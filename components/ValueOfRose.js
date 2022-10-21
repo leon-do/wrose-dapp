@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import getPriceOfRose from "../src/getPriceOfRose";
 
-export default function PriceOfRose({ amount }) {
+export default function ValueOfRose({ amount }) {
   const [value, setValue] = useState(""); // value = amount * price
 
   useEffect(() => {
@@ -8,10 +9,7 @@ export default function PriceOfRose({ amount }) {
   }, [amount]);
 
   async function handleValue() {
-    const response = await fetch("https://api.coincap.io/v2/assets?ids=oasis-network", {
-      method: "GET",
-    }).then((res) => res.json());
-    const price = Math.round(response.data[0].priceUsd * 100) / 100;
+    const price = await getPriceOfRose();
     setValue(amount * price);
   }
 
