@@ -17,8 +17,8 @@ export default function Unwrap() {
   return (
     <>
       <Head>
-        <title>WROSE</title>
-        <meta name="description" content="Wrap Rose WROSE" />
+        <title>WROSE Unwrap</title>
+        <meta name="description" content="Unwrapping Wrap Rose WROSE" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />

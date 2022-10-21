@@ -24,7 +24,7 @@ export default function Wrap() {
     <>
       <Head>
         <title>WROSE Wrap</title>
-        <meta name="description" content="Wrap Rose WROSE" />
+        <meta name="description" content="Wrapping Wrap Rose WROSE" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />

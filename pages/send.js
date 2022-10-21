@@ -17,8 +17,8 @@ export default function Send() {
   return (
     <>
       <Head>
-        <title>WROSE</title>
-        <meta name="description" content="Wrap Rose WROSE" />
+        <title>WROSE Send</title>
+        <meta name="description" content="Sending Wrap Rose WROSE" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
