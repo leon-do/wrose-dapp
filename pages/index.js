@@ -9,12 +9,11 @@ export default function Index() {
 
       <section className="px-2 pt-32 md:px-0">
         <div className="container items-center max-w-6xl px-5 mx-auto space-y-6 text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-left sm:text-5xl md:text-6xl md:text-center">
-            <span className="block">
-              <span className="block mt-1 text-sky-500 lg:inline lg:mt-0">WROSE</span>
-            </span>
-          </h1>
-          <p className="w-full mx-auto text-base text-left sm:text-lg lg:text-2xl max-w-xl md:text-center">Wrapped ROSE on Oasis Sapphire enables DeFi swapping and sending ROSE while preserving privacy.</p>
+          <div className="text-center text-6xl text-sky-500">WROSE</div>
+          <div className="flex flex-col items-center pt-4">
+            <div className="text-center text-2xl max-w-lg text-gray-700">Wrapped ROSE on Oasis Sapphire enables DeFi swapping and sending ROSE while preserving privacy.</div>
+          </div>
+          <p className="w-full mx-auto text-base text-left sm:text-lg lg:text-2xl max-w-xl md:text-center"></p>
           <div className="py-10">
             <Link href="/send">
               <span className="cursor-pointer px-6 py-3 text-lg text-white bg-sky-500 rounded-md hover:bg-sky-400">Launch App</span>
@@ -79,7 +78,7 @@ export default function Index() {
       </section>
 
       {/* Smart Contracts */}
-      <section className="w-full mt-40 mb-10">
+      <section className="container items-center max-w-6xl px-5 mx-auto space-y-6 text-center">
         <div className="text-center text-5xl">Smart Contracts</div>
         <div className="flex flex-col items-center pt-4">
           <div className="text-center text-xl max-w-lg text-gray-500">The Oasis Network separates consensus and execution into two layers — the Consensus Layer and The ParaTime Layer. This means there are multiple WROSE smart contracts.</div>
