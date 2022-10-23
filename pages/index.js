@@ -17,7 +17,7 @@ export default function Index() {
           <p className="w-full mx-auto text-base text-left sm:text-lg lg:text-2xl max-w-xl md:text-center">Wrapped ROSE on Oasis Sapphire enables DeFi swapping and sending ROSE while preserving privacy.</p>
           <div className="my-10">
             <Link href="/send">
-              <span className="px-6 py-3 mb-10 text-lg text-white bg-sky-500 rounded-md md:mb-0 hover:bg-sky-400 md:w-auto">Launch App</span>
+              <span className="cursor-pointer px-6 py-3 mb-10 text-lg text-white bg-sky-500 rounded-md md:mb-0 hover:bg-sky-400 md:w-auto">Launch App</span>
             </Link>
           </div>
         </div>
