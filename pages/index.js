@@ -45,7 +45,7 @@ export default function Index() {
       <section className="w-full mb-40">
         <div className="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           <div className="box-border relative w-full max-w-md mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none">
-            <Image width="772" height="644" layout="fill" alt="" src="/images/smart-contract.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
+            <Image width="772" height="644" alt="" src="/images/smart-contract.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
           </div>
           <div className="box-border order-first w-full border-solid md:w-1/2 md:pl-10 md:order-none">
             <h2 className="m-0 text-3xl font-semibold leading-tight border-0 border-gray-300">Smart Contract</h2>
@@ -57,7 +57,7 @@ export default function Index() {
       <section className="w-full mb-40">
         <div className="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           <div className="box-border relative w-full max-w-md mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none">
-            <Image width="772" height="644" layout="fill" alt="" src="/images/send.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
+            <Image width="772" height="644" alt="" src="/images/send.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
           </div>
           <div className="box-border order-first w-full border-solid md:w-1/2 md:pl-10 md:order-none">
             <h2 className="m-0 text-3xl font-semibold leading-tight border-0 border-gray-300">Send</h2>
@@ -69,7 +69,7 @@ export default function Index() {
       <section className="w-full mb-40">
         <div className="box-border flex flex-col items-center content-center px-8 mx-auto leading-6 border-0 border-gray-300 border-solid md:flex-row max-w-7xl lg:px-16">
           <div className="box-border relative w-full max-w-md mt-5 mb-4 -ml-5 text-center bg-no-repeat bg-contain border-solid md:mt-0 md:max-w-none">
-            <Image width="772" height="644" layout="fill" alt="" src="/images/recieve.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
+            <Image width="772" height="644" alt="" src="/images/recieve.svg" className="p-2 pl-6 pr-5 xl:pl-16 xl:pr-20" />
           </div>
           <div className="box-border order-first w-full border-solid md:w-1/2 md:pl-10 md:order-none">
             <h2 className="m-0 text-3xl font-semibold leading-tight border-0 border-gray-300">Recieve</h2>
