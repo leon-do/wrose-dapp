@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import { ethers } from "ethers";
 import web3Onboard from "../src/web3Onboard";
 import WROSE from "../src/wrose";
 import NavApp from "../components/NavApp";
@@ -7,11 +8,17 @@ import BalanceOfRose from "../components/BalanceOfRose";
 import BalanceOfWrose from "../components/BalanceOfWrose";
 import ValueOfRose from "../components/ValueOfRose";
 import getBalanceOfRose from "../src/getBalanceOfRose";
+import Modal from "../components/Modal";
 
 export default function Wrap() {
   const [signer, setSigner] = useState(null);
   const [wrose, setWrose] = useState(null);
   const [amount, setAmount] = useState(null);
+  // modal info
+  const [showModal, setShowModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(true);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
 
   async function connect() {
     const signer = await web3Onboard();
@@ -22,12 +29,30 @@ export default function Wrap() {
   }
 
   async function wrap() {
-    if (!(await isValidAmount())) return alert("Amount exceeds balance");
-    const transactionHash = await wrose.wrap(amount);
-    console.log({ transactionHash });
+    if (!(await isValidAmount())) {
+      setModalSuccess(false);
+      setModalTitle("Error");
+      setModalMessage("Amount exceeds balance");
+      setShowModal(true);
+      return;
+    }
+    try {
+      const transactionHash = await wrose.wrap(amount);
+      setModalSuccess(true);
+      setModalTitle("Success");
+      setModalMessage("Transaction Hash: " + transactionHash);
+      setShowModal(true);
+    } catch (error) {
+      setModalSuccess(false);
+      setModalTitle("Error");
+      setModalMessage(error.message);
+      setShowModal(true);
+    }
   }
 
   async function isValidAmount() {
+    const isAddress = ethers.utils.isAddress(to);
+    if (!isAddress) return false;
     const balance = await getBalanceOfRose(wrose);
     // leave a lil bit of gas
     return amount <= balance - 0.005;
@@ -95,6 +120,8 @@ export default function Wrap() {
           </div>
         </div>
       </div>
+
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} /> : <></>}
     </>
   );
 }

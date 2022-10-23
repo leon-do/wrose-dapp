@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import { ethers } from "ethers";
 import web3Onboard from "../src/web3Onboard";
 import WROSE from "../src/wrose";
+import metaSend from "../src/metaSend";
 import NavApp from "../components/NavApp";
 import BalanceOfWrose from "../components/BalanceOfWrose";
 import ValueOfRose from "../components/ValueOfRose";
 import getBalanceOfWrose from "../src/getBalanceOfWrose";
-import metaSend from "../src/metaSend";
+import Modal from "../components/Modal";
+import ModalSend from "../components/ModalSend";
 
 export default function Wrap() {
   const [signer, setSigner] = useState(null);
   const [wrose, setWrose] = useState(null);
   const [amount, setAmount] = useState(null);
   const [to, setTo] = useState(null);
+  // modal info
+  const [showModal, setShowModal] = useState(false);
+  const [modalSuccess, setModalSuccess] = useState(true);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [showModalSend, setShowModalSend] = useState(false);
+  const [displayButton, setDisplayButton] = useState(true);
 
   async function connect() {
     const signer = await web3Onboard();
@@ -22,15 +32,50 @@ export default function Wrap() {
     }
   }
 
-  async function send() {
-    if (!(await isValidAmount())) return alert("Amount exceeds balance");
-    const { response } = await metaSend(wrose, amount, to);
-    console.log({ transactionHash: response });
+  async function displayModalSend() {
+    displayModal(true, "Loading", "Please wait...", false);
+    setShowModal(true);
+    if (!(await isValidAmount())) {
+      displayModal(false, "Error", "Invalid Address or Amount");
+      return;
+    }
+    setShowModal(false);
+    setShowModalSend(true);
   }
 
   async function isValidAmount() {
+    const isAddress = ethers.utils.isAddress(to);
+    if (!amount || !to || !isAddress) return false;
     const balance = await getBalanceOfWrose(wrose);
     return amount <= balance;
+  }
+
+  // from <Modal />
+  function handleModal() {
+    setShowModal(false);
+  }
+
+  // from <ModalSend />
+  async function handleModalSend(send) {
+    setShowModalSend(false);
+    if (!send) return;
+    displayModal(true, "Loading", "Please wait...", false);
+    setShowModal(true);
+    try {
+      const { response } = await metaSend(wrose, amount, to);
+      displayModal(true, "Success", "Transaction Hash: " + response);
+      setShowModal(true);
+    } catch (error) {
+      displayModal(false, "Error", error.message);
+      setShowModal(true);
+    }
+  }
+
+  function displayModal(success, title, message, display = true) {
+    setModalSuccess(success);
+    setModalTitle(title);
+    setModalMessage(message);
+    setDisplayButton(display);
   }
 
   return (
@@ -86,13 +131,15 @@ export default function Wrap() {
                 Connect Wallet
               </button>
             ) : (
-              <button onClick={() => send()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
+              <button onClick={() => displayModalSend()} className="text-xl w-full justify-center rounded-3xl mt-3 p-4 bg-sky-600 hover:bg-sky-500">
                 Send
               </button>
             )}
           </div>
         </div>
       </div>
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} /> : <></>}
+      {showModalSend ? <ModalSend to={to} amount={amount} handleModalSend={handleModalSend} /> : <></>}
     </>
   );
 }
