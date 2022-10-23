@@ -79,7 +79,7 @@ export default function Index() {
       <section className="w-full mt-40 mb-10">
         <div className="text-center text-5xl">Smart Contracts</div>
         <div className="flex flex-col items-center pt-4">
-          <div className="text-center text-xl max-w-lg">The Oasis Network separates consensus and execution into two layers — the Consensus Layer and The ParaTime Layer. This means there are multiple WROSE smart contracts.</div>
+          <div className="text-center text-xl max-w-lg text-gray-500">The Oasis Network separates consensus and execution into two layers — the Consensus Layer and The ParaTime Layer. This means there are multiple WROSE smart contracts.</div>
         </div>
       </section>
 
@@ -104,25 +104,25 @@ export default function Index() {
                         </th>
                       </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 bg-white">
+                    <tbody class="divide-y divide-gray-200 bg-white text-gray-500">
                       <tr>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Sapphire</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mainnet</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Sapphire</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Mainnet</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">
                           <a href="#">---</a>
                         </td>
                       </tr>
                       <tr>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Sapphire</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Testnet</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Sapphire</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Testnet</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">
                           <a href="https://testnet.explorer.sapphire.oasis.dev/address/0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0/transactions">0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0</a>
                         </td>
                       </tr>
                       <tr>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Emerald</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Mainnet</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Emerald</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">Mainnet</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm">
                           <a href="https://explorer.emerald.oasis.dev/address/0x21C718C22D52d0F3a789b752D4c2fD5908a8A733/transactions">0x21C718C22D52d0F3a789b752D4c2fD5908a8A733</a>
                         </td>
                       </tr>
