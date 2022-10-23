@@ -6,7 +6,7 @@ export default function ValueOfRose({ amount }) {
 
   useEffect(() => {
     handleValue();
-  }, [amount]);
+  });
 
   async function handleValue() {
     const price = await getPriceOfRose();
