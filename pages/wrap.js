@@ -32,7 +32,7 @@ export default function Wrap() {
     if (!(await isValidAmount())) {
       setModalSuccess(false);
       setModalTitle("Error");
-      setModalMessage("Amount exceeds balance");
+      setModalMessage("Invalid Amount");
       setShowModal(true);
       return;
     }
@@ -51,11 +51,15 @@ export default function Wrap() {
   }
 
   async function isValidAmount() {
-    const isAddress = ethers.utils.isAddress(to);
-    if (!isAddress) return false;
     const balance = await getBalanceOfRose(wrose);
+    if (!amount) return false;
     // leave a lil bit of gas
     return amount <= balance - 0.005;
+  }
+
+  // from <Modal />
+  function handleModal() {
+    setShowModal(false);
   }
 
   return (
@@ -121,7 +125,7 @@ export default function Wrap() {
         </div>
       </div>
 
-      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} /> : <></>}
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} /> : <></>}
     </>
   );
 }

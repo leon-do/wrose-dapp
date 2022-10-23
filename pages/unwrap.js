@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import {ethers} from "ethers"
+import { ethers } from "ethers";
 import web3Onboard from "../src/web3Onboard";
 import WROSE from "../src/wrose";
 import NavApp from "../components/NavApp";
@@ -30,10 +30,10 @@ export default function Wrap() {
   }
 
   async function unwrap() {
-        if (!(await isValidAmount())) {
+    if (!(await isValidAmount())) {
       setModalSuccess(false);
       setModalTitle("Error");
-      setModalMessage("Amount exceeds balance");
+      setModalMessage("Invalid Amount");
       setShowModal(true);
       return;
     }
@@ -52,12 +52,16 @@ export default function Wrap() {
   }
 
   async function isValidAmount() {
-    const isAddress = ethers.utils.isAddress(to);
-    if (!isAddress) return false;
     const wroseBalance = await getBalanceOfWrose(wrose);
     const roseBalance = await getBalanceOfRose(wrose);
+    if (!amount) return false;
     // leave a lil bit of gas
     return amount <= wroseBalance && roseBalance >= 0.005;
+  }
+
+  // from <Modal />
+  function handleModal() {
+    setShowModal(false);
   }
 
   return (
@@ -123,7 +127,7 @@ export default function Wrap() {
         </div>
       </div>
 
-      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} /> : <></>}
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} /> : <></>}
     </>
   );
 }
