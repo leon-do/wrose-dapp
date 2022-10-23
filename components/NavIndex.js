@@ -11,10 +11,10 @@ export default function NavIndex() {
                 <img className="h-8 w-auto lg:block" src="/images/oasis.svg" alt="WROSE" />
               </div>
               <div className="ml-6 flex space-x-8">
-                <Link href="/docs">
+                <Link href="#">
                   <a className="inline-flex items-center border-b-2 hover:border-b-sky-500 px-1 pt-1 text-base font-medium">Docs</a>
                 </Link>
-                <Link href="/github">
+                <Link href="https://github.com/orgs/wrose-sapphire/repositories">
                   <a className="inline-flex items-center border-b-2 hover:border-b-sky-500 px-1 pt-1 text-base font-medium">Github</a>
                 </Link>
               </div>
