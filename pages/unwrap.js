@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import web3Onboard from "../src/web3Onboard";
 import WROSE from "../src/wrose";
-import NavApp from "../components/Nav";
+import NavApp from "../components/NavApp";
 import BalanceOfRose from "../components/BalanceOfRose";
 import BalanceOfWrose from "../components/BalanceOfWrose";
 import ValueOfRose from "../components/ValueOfRose";
