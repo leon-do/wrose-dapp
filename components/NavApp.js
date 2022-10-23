@@ -19,13 +19,13 @@ export default function Nav() {
               </div>
               <div className="ml-6 flex space-x-8">
                 <Link href="/send">
-                  <a className={`${page === "/send" ? "border-indigo-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Send</a>
+                  <a className={`${page === "/send" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Send</a>
                 </Link>
                 <Link href="/wrap">
-                  <a className={`${page === "/wrap" ? "border-indigo-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Wrap</a>
+                  <a className={`${page === "/wrap" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Wrap</a>
                 </Link>
                 <Link href="/unwrap">
-                  <a className={`${page === "/unwrap" ? "border-indigo-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Unwrap</a>
+                  <a className={`${page === "/unwrap" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Unwrap</a>
                 </Link>
               </div>
             </div>
