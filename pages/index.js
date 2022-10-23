@@ -4,7 +4,7 @@ import NavIndex from "../components/NavIndex";
 
 export default function Index() {
   return (
-    <div className="bg-slate-100 text-black">
+    <div className="bg-sky-200 text-black">
       <NavIndex />
 
       <section className="px-2 pt-32 md:px-0">
