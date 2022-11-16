@@ -19,8 +19,8 @@ export default function Nav() {
                 <Image width="32" height="32" className="h-8 w-auto lg:block" src="/images/oasis.svg" alt="WROSE" />
               </div>
               <div className="ml-6 flex space-x-8">
-                <Link href="/send">
-                  <a className={`${page === "/send" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Send</a>
+                <Link href="/">
+                  <a className={`${page === "/" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Send</a>
                 </Link>
                 <Link href="/wrap">
                   <a className={`${page === "/wrap" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Wrap</a>

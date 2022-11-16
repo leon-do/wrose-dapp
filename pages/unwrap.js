@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { ethers } from "ethers";
 import web3Onboard from "../src/web3Onboard";
 import WROSE from "../src/wrose";
-import NavApp from "../components/NavApp";
+import Nav from "../components/Nav";
 import BalanceOfRose from "../components/BalanceOfRose";
 import BalanceOfWrose from "../components/BalanceOfWrose";
 import ValueOfRose from "../components/ValueOfRose";
@@ -71,7 +70,7 @@ export default function Wrap() {
         <meta name="description" content="Wrap Rose WROSE on Oasis Sapphire" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavApp />
+      <Nav />
 
       <div className="flex min-h-full items-center justify-center py-12 px-4">
         <div className="w-full max-w-md p-2 rounded-xl border border-slate-700 bg-slate-900">
