@@ -10,7 +10,7 @@ export default function ValueOfRose({ amount }) {
 
   async function handleValue() {
     const price = await getPriceOfRose();
-    setValue(amount * price);
+    setValue(Math.round(amount * price * 100000) / 100000);
   }
 
   return (

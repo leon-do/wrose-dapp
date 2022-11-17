@@ -16,12 +16,17 @@ npm run dev
 yarn dev
 ```
 
-To enable relay
+Update env file
 
 ```bash
 vi .env.local
 
 RELAY_PRIVATE_KEY=123abcprivatekey
+CHAIN_ID=0x5AFF
+CHAIN_TOKEN=tROSE
+CHAIN_LABEL=Oasis Sapphire Testnet
+CHAIN_RPC_URL=https://testnet.emerald.oasis.dev
+CONTRACT_ADDRESS=0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0
 ```
 
 ## Technical Docs

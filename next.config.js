@@ -3,7 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    CONTRACT_ADDRESS: "0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0",
+    CHAIN_ID: process.env.CHAIN_ID,
+    CHAIN_TOKEN: process.env.CHAIN_TOKEN,
+    CHAIN_LABEL: process.env.CHAIN_LABEL,
+    CHAIN_RPC_URL: process.env.CHAIN_RPC_URL,
+    CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
     ABI: [
       {
         anonymous: false,

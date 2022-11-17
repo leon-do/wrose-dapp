@@ -19,6 +19,7 @@ export default function Wrap() {
   const [modalSuccess, setModalSuccess] = useState(true);
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
+  const [displayButton, setDisplayButton] = useState(true);
 
   async function connect() {
     const signer = await web3Onboard();
@@ -29,23 +30,19 @@ export default function Wrap() {
   }
 
   async function unwrap() {
+    displayModal(true, "Loading", "Please wait...", false);
+    setShowModal(true);
     if (!(await isValidAmount())) {
-      setModalSuccess(false);
-      setModalTitle("Error");
-      setModalMessage("Invalid Amount");
+      displayModal(false, "Error", "Invalid Amount", true);
       setShowModal(true);
       return;
     }
     try {
       const transactionHash = await wrose.unwrap(amount);
-      setModalSuccess(true);
-      setModalTitle("Success");
-      setModalMessage("Transaction Hash: " + transactionHash);
+      displayModal(true, "Success", "Transaction Hash: " + transactionHash);
       setShowModal(true);
     } catch (error) {
-      setModalSuccess(false);
-      setModalTitle("Error");
-      setModalMessage(error.message);
+      displayModal(false, "Error", error.message);
       setShowModal(true);
     }
   }
@@ -61,6 +58,13 @@ export default function Wrap() {
   // from <Modal />
   function handleModal() {
     setShowModal(false);
+  }
+
+  function displayModal(success, title, message, display = true) {
+    setModalSuccess(success);
+    setModalTitle(title);
+    setModalMessage(message);
+    setDisplayButton(display);
   }
 
   return (
@@ -126,7 +130,7 @@ export default function Wrap() {
         </div>
       </div>
 
-      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} /> : <></>}
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} /> : <></>}
     </>
   );
 }

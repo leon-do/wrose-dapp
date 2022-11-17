@@ -18,7 +18,8 @@ export default function ModalSend(props) {
               </h3>
               <div className="mt-2">
                 <p className="text-sm text-gray-200 break-words">
-                  By signing this message, you agree to send {to} {amount} ROSE.
+                  By signing this message, you agree to send <br />
+                  {amount} ROSE to {to}.
                 </p>
               </div>
             </div>
