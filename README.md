@@ -1,5 +1,7 @@
 # WROSE on Sapphire
 
+![](https://user-images.githubusercontent.com/19412160/202523845-271275d0-1e58-40c4-b3ef-3c944bc97c1b.png)
+
 ## Getting Started
 
 Install
