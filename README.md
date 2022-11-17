@@ -16,17 +16,30 @@ npm run dev
 yarn dev
 ```
 
-Update env file
+Update .env.local file
 
-```bash
-vi .env.local
+`vi .env.local`
 
+Testnet Environment Variables
+
+```
 RELAY_PRIVATE_KEY=123abcprivatekey
 CHAIN_ID=0x5AFF
 CHAIN_TOKEN=tROSE
 CHAIN_LABEL=Oasis Sapphire Testnet
-CHAIN_RPC_URL=https://testnet.emerald.oasis.dev
+CHAIN_RPC_URL=https://testnet.explorer.sapphire.oasis.dev
 CONTRACT_ADDRESS=0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0
+```
+
+Mainnet Environment Variables
+
+```
+RELAY_PRIVATE_KEY=123abcprivatekey
+CHAIN_ID=0x5afe
+CHAIN_TOKEN=ROSE
+CHAIN_LABEL=Oasis Sapphire
+CHAIN_RPC_URL=https://sapphire.oasis.dev
+CONTRACT_ADDRESS=
 ```
 
 ## Technical Docs
