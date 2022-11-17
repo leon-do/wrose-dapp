@@ -15,9 +15,11 @@ export default function Nav() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 justify-between">
             <div className="flex">
-              <div className="flex flex-shrink-0 items-center">
-                <Image width="32" height="32" className="h-8 w-auto lg:block" src="/images/oasis.svg" alt="WROSE" />
-              </div>
+              <Link href="https://wrose.io">
+                <a className="cursor-pointer flex flex-shrink-0 items-center">
+                  <Image width="32" height="32" className="h-8 w-auto lg:block" src="/images/oasis.svg" alt="WROSE" />
+                </a>
+              </Link>
               <div className="ml-6 flex space-x-8">
                 <Link href="/">
                   <a className={`${page === "/" ? "border-sky-500" : ""} inline-flex items-center border-b-2  px-1 pt-1 text-base font-medium`}>Send</a>
