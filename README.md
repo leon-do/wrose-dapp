@@ -28,6 +28,7 @@ Testnet Environment Variables
 RELAY_PRIVATE_KEY=123abcprivatekey
 CHAIN_ID=0x5AFF
 CHAIN_TOKEN=tROSE
+WROSE_NAME=tWROSE
 CHAIN_LABEL=Oasis Sapphire Testnet
 CHAIN_RPC_URL=https://testnet.explorer.sapphire.oasis.dev
 CONTRACT_ADDRESS=0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0
@@ -39,6 +40,7 @@ Mainnet Environment Variables
 RELAY_PRIVATE_KEY=123abcprivatekey
 CHAIN_ID=0x5afe
 CHAIN_TOKEN=ROSE
+WROSE_NAME=WROSE
 CHAIN_LABEL=Oasis Sapphire
 CHAIN_RPC_URL=https://sapphire.oasis.dev
 CONTRACT_ADDRESS=

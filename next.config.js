@@ -5,6 +5,7 @@ const nextConfig = {
   env: {
     CHAIN_ID: process.env.CHAIN_ID,
     CHAIN_TOKEN: process.env.CHAIN_TOKEN,
+    WROSE_NAME: process.env.WROSE_NAME,
     CHAIN_LABEL: process.env.CHAIN_LABEL,
     CHAIN_RPC_URL: process.env.CHAIN_RPC_URL,
     CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,

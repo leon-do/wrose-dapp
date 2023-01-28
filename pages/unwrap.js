@@ -89,7 +89,7 @@ export default function Wrap() {
                     {wrose ? <ValueOfRose amount={amount} /> : <></>}
                   </td>
                   <td className="text-right pr-4">
-                    <div className="text-xl">WROSE</div>
+                    <div className="text-xl">{process.env.WROSE_NAME}</div>
                     {wrose ? <BalanceOfWrose wrose={wrose} /> : <></>}
                   </td>
                 </tr>
@@ -108,7 +108,7 @@ export default function Wrap() {
                     {wrose ? <ValueOfRose amount={amount} /> : <></>}
                   </td>
                   <td className="text-right pr-4">
-                    <div className="text-xl">ROSE</div>
+                    <div className="text-xl">{process.env.CHAIN_TOKEN}</div>
                     {wrose ? <BalanceOfRose wrose={wrose} /> : <></>}
                   </td>
                 </tr>
