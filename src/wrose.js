@@ -39,6 +39,13 @@ export default class WROSE {
     return signature;
   }
 
+  async verifyMetaWithdraw(_signature, _to, _amount, _nonce, _reward) {
+    const hash = await this.createMetaWithdraw(_to, _amount, _nonce, _reward);
+    const signerAddress = await this.signer.getAddress();
+    const recoveredAddress = ethers.utils.verifyMessage(ethers.utils.arrayify(hash), _signature);
+    return signerAddress === recoveredAddress;
+  }
+
   async relayMetaWithdraw(_signature, _to, _value, _nonce, _reward) {
     const value = ethers.utils.parseEther(_value);
     const reward = ethers.utils.parseEther(_reward);

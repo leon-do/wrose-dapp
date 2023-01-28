@@ -1,10 +1,12 @@
 import { ethers } from "ethers";
 import * as sapphire from "@oasisprotocol/sapphire-paratime";
 import Joi from "joi";
+import WROSE from "../../src/wrose";
 
 // prettier-ignore
 const signer = sapphire.wrap(new ethers.Wallet(process.env.RELAY_PRIVATE_KEY).connect(ethers.getDefaultProvider(sapphire.NETWORKS.testnet.defaultGateway)));
 const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, process.env.ABI, signer);
+const wrose = new WROSE(signer);
 
 const schema = Joi.object({
   signature: Joi.string().required(),
@@ -19,6 +21,7 @@ export default async function handler(req, res) {
   const { error, value } = schema.validate(req.body);
   if (error) return res.status(400).send({ error: error.message });
   if (value.reward < value.amount * 0.01) return res.status(400).send({ error: "Incorrect reward" });
+  if (!(await wrose.verifyMetaWithdraw(value.signature, value.to, value.amount, value.nonce, value.reward))) return res.status(400).send({ error: "Incorrect signature" });
   const amount = ethers.utils.parseEther(value.amount.toString()).toString();
   const reward = ethers.utils.parseEther(value.reward.toString()).toString();
   const receipt = await contract["metaWithdraw"](value.signature, value.to, amount, value.nonce, reward);
