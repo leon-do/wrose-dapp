@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import getPriceOfRose from "../src/getPriceOfRose";
+import getPriceOfRose from "../scripts/getPriceOfRose";
 
-export default function ValueOfRose({ amount }) {
-  const [value, setValue] = useState(""); // value = amount * price
+type Props = {
+  amount: number;
+};
+
+const ValueOfRose: React.FunctionComponent<Props> = ({ amount }) => {
+  const [value, setValue] = useState(0); // value = amount * price
 
   useEffect(() => {
     handleValue();
@@ -18,4 +22,6 @@ export default function ValueOfRose({ amount }) {
       <div className="text-sm mt-2">${value}</div>
     </>
   );
-}
+};
+
+export default ValueOfRose;

@@ -1,9 +1,14 @@
+type Props = {
+  to: string;
+  amount: string;
+  handleModalSend: (arg0: boolean) => void;
+};
+
 /**
- *
  * @param {to, amount} props
  * @example <ModalSend to="0xAlice" amount="123" handleModalSend={handleModalSend} />
  */
-export default function ModalSend(props) {
+const ModalSend: React.FunctionComponent<Props> = (props) => {
   const { to, amount, handleModalSend } = props;
 
   return (
@@ -36,4 +41,6 @@ export default function ModalSend(props) {
       </div>
     </div>
   );
-}
+};
+
+export default ModalSend;

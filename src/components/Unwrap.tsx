@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import WROSE from "../scripts/wrose";
 
-export default function Unwrap({ wrose }) {
+type Props = {
+  wrose: WROSE;
+};
+
+const Unwrap: React.FunctionComponent<Props> = ({ wrose }) => {
   const [amount, setAmount] = useState("1");
 
   async function unwrap() {
@@ -16,4 +21,6 @@ export default function Unwrap({ wrose }) {
       </div>
     </>
   );
-}
+};
+
+export default Unwrap;

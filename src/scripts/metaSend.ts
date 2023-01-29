@@ -1,12 +1,13 @@
 import getReplayNonce from "./getReplayNonce";
+import WROSE from "./wrose";
 
 /**
  * creates meta transaction
  * signs meta transaction
  * sends meta transaction to relayer
  */
-export default async function metaSend(wrose, amount, to) {
-  const reward = 0.01 * amount;
+export default async function metaSend(wrose: WROSE, amount: string, to: string) {
+  const reward = 0.01 * Number(amount);
   // get signer address
   const signerAddress = await wrose.signer.getAddress();
   // fetch replay nonce

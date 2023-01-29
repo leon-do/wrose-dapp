@@ -1,14 +1,6 @@
-# WROSE on Sapphire
-
-![](https://user-images.githubusercontent.com/19412160/202523845-271275d0-1e58-40c4-b3ef-3c944bc97c1b.png)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-
-Install
-
-```bash
-yarn
-```
 
 First, run the development server:
 
@@ -16,56 +8,31 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
+# or
+pnpm dev
 ```
 
-Update .env.local file
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-`vi .env.local`
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-Testnet Environment Variables
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-```
-RELAY_PRIVATE_KEY=91d68008cc5323be3a777a568e78d5b2d043e76961fc892ff6353c56aacba145
-CHAIN_ID=0x5AFF
-CHAIN_TOKEN=tROSE
-WROSE_NAME=tWROSE
-CHAIN_LABEL=Oasis Sapphire Testnet
-CHAIN_RPC_URL=https://testnet.sapphire.oasis.dev
-CONTRACT_ADDRESS=0xC6C6A205ec3031E0C61ce2d0bd4A415C5509C1C0
-```
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Mainnet Environment Variables
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```
-RELAY_PRIVATE_KEY=91d68008cc5323be3a777a568e78d5b2d043e76961fc892ff6353c56aacba145
-CHAIN_ID=0x5afe
-CHAIN_TOKEN=ROSE
-WROSE_NAME=WROSE
-CHAIN_LABEL=Oasis Sapphire
-CHAIN_RPC_URL=https://sapphire.oasis.io
-CONTRACT_ADDRESS=
-```
+## Learn More
 
-## Technical Docs
+To learn more about Next.js, take a look at the following resources:
 
-```javascript
-// use provider from browser wallet
-import web3Onboard from "../src/web3Onboard";
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-// get signer from browser wallet
-const signer = await web3Onboard();
-// init signer to wrose class
-const wrose = new WROSE(signer));
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-// get signer aka wallet address
-const signerAddress = await wrose.signerAddress();
+## Deploy on Vercel
 
-// get WROSE balance
-const balanceOf = await wrose.balanceOf();
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-// wrap 123 ROSE to get 123 WROSE
-const txHash = await wrose.wrap(123)
-
-// unwrap 123 WROSE to get 123 ROSE
-const txHash = await wrose.unwrap(123)
-```
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

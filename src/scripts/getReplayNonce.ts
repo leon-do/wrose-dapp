@@ -1,4 +1,4 @@
-export default async function getReplayNonce(address) {
+export default async function getReplayNonce(address: string) {
   const nonce = await fetch("/api/replayNonce", {
     method: "POST",
     headers: {

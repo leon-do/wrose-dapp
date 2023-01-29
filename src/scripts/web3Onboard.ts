@@ -9,10 +9,10 @@ export default async function web3Onboard() {
     wallets: [injected],
     chains: [
       {
-        id: process.env.CHAIN_ID, // "0x5AFF",
-        token: process.env.CHAIN_TOKEN, // "tROSE",
-        label: process.env.CHAIN_LABEL, // "Oasis Sapphire Testnet",
-        rpcUrl: process.env.CHAIN_RPC_URL // "https://testnet.emerald.oasis.dev",
+        id: process.env.CHAIN_ID as string, // "0x5AFF",
+        token: process.env.CHAIN_TOKEN as string, // "tROSE",
+        label: process.env.CHAIN_LABEL as string, // "Oasis Sapphire Testnet",
+        rpcUrl: process.env.CHAIN_RPC_URL as string, // "https://testnet.emerald.oasis.dev",
       },
     ],
   });
