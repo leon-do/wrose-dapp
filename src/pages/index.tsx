@@ -36,7 +36,7 @@ export default function Wrap() {
     displayModal(true, "Loading", "Please wait...", false);
     setShowModal(true);
     if (!(await isValidAmount())) {
-      displayModal(false, "Error", "Invalid Address or Amount");
+      displayModal(false, "Error", `Invalid Address or Amount. Minimum amount: 1 ${process.env.WROSE_NAME}`);
       return;
     }
     setShowModal(false);
@@ -44,6 +44,7 @@ export default function Wrap() {
   }
 
   async function isValidAmount() {
+    if (Number(amount) < 1) return false;
     if (!to || !wrose) return false;
     const isAddress = ethers.utils.isAddress(to);
     if (!amount || !isAddress) return false;
