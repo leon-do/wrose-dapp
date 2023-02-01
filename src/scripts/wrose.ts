@@ -22,12 +22,12 @@ export default class WROSE {
   }
 
   async wrap(_amount: string) {
-    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount) });
+    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount), gasLimit: 100000 } );
     return receipt.hash;
   }
 
   async unwrap(_amount: string) {
-    const receipt = await this.contract["withdraw"](ethers.utils.parseEther(_amount));
+    const receipt = await this.contract["withdraw"](ethers.utils.parseEther(_amount), { gasLimit: 100000 });
     return receipt.hash;
   }
 
