@@ -12,7 +12,7 @@ type Error = {
 };
 
 // prettier-ignore
-const signer = sapphire.wrap(new ethers.Wallet(process.env.RELAY_PRIVATE_KEY as string).connect(ethers.getDefaultProvider(sapphire.NETWORKS.testnet.defaultGateway)));
+const signer = sapphire.wrap(new ethers.Wallet(process.env.RELAY_PRIVATE_KEY as string).connect(ethers.getDefaultProvider(process.env.CHAIN_RPC_URL)));
 const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS as string, process.env.ABI as string, signer);
 
 const schema = Joi.object({
