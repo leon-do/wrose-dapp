@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     if (value.reward < value.amount * 0.01) return res.status(400).send({ error: "Incorrect reward" });
     const amount = ethers.utils.parseEther(value.amount.toString()).toString();
     const reward = ethers.utils.parseEther(value.reward.toString()).toString();
-    const receipt = await contract["metaWithdraw"](value.signature, value.to, amount, value.nonce, reward, { gasLimit: 100000 });
+    const receipt = await contract["metaWithdraw"](value.signature, value.to, amount, value.nonce, reward);
     res.status(200).json({ response: receipt.hash });
   } catch (error: any) {
     res.status(500).send({ error: error.message });
