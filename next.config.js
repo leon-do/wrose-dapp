@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/send',
+        permanent: true,
+      },
+    ]
+  },
   env: {
     CHAIN_ID: process.env.CHAIN_ID,
     CHAIN_TOKEN: process.env.CHAIN_TOKEN,
