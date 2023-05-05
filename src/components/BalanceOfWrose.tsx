@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import getBalanceOfWrose from "../scripts/getBalanceOfWrose";
 import WROSE from "../scripts/wrose";
 
@@ -9,17 +9,21 @@ type Props = {
 const BalanceOfWrose: React.FunctionComponent<Props> = ({ wrose }) => {
   const [balance, setBalance] = useState("");
 
-  useEffect(() => {
-    getBalanceOfWrose(wrose).then((bal) => setBalance(bal.toString()));
-    setInterval(async () => {
+  const handleBalance = async () => {
+    try {
       const balanceOf = await getBalanceOfWrose(wrose);
       setBalance(balanceOf.toString());
-    }, 5000);
-  }, []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
-      <div className="text-sm mt-2">Balance: {balance}</div>
+      <div className="text-sm mt-2">
+        <button onClick={() => handleBalance()}>🔄</button>
+        <span> Balance: {balance} </span>
+      </div>
     </>
   );
 };

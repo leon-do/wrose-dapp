@@ -1,4 +1,4 @@
-import getReplayNonce from "./getReplayNonce";
+import { ethers } from "ethers";
 import WROSE from "./wrose";
 
 /**
@@ -8,12 +8,10 @@ import WROSE from "./wrose";
  */
 export default async function metaSend(wrose: WROSE, amount: string, to: string) {
   const reward = 0.01 * Number(amount);
-  // get signer address
-  const signerAddress = await wrose.signer.getAddress();
   // fetch replay nonce
-  const nonce = await getReplayNonce(signerAddress);
+  const nonce = ethers.BigNumber.from(ethers.utils.randomBytes(32)).toString();
   // create meta transaction
-  const metaTransaction = await wrose.createMetaWithdraw(to, amount, nonce.response, reward.toString());
+  const metaTransaction = await wrose.createMetaWithdraw(to, amount, nonce, reward.toString());
   // sign meta transaction
   const signature = await wrose.signMetaWithdraw(metaTransaction);
   // POST to /api/relay
@@ -26,7 +24,7 @@ export default async function metaSend(wrose: WROSE, amount: string, to: string)
       signature,
       to,
       amount: Number(amount),
-      nonce: nonce.response,
+      nonce,
       reward,
     }),
   }).then((res) => res.json());

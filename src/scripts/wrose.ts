@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 
 export default class WROSE {
-
   contractAddress: string;
   signer: ethers.Signer;
   contract: ethers.Contract;
@@ -16,13 +15,13 @@ export default class WROSE {
     return await this.signer.getAddress();
   }
 
-  async balanceOf(_address: string) {
-    const balance = await this.contract.callStatic["balanceOf"](_address);
-    return ethers.utils.formatEther(balance);
+  async balanceOf() {
+    const balance = await this.contract.callStatic["balanceOf"]();
+    return ethers.utils.formatEther(balance).toString();
   }
 
   async wrap(_amount: string) {
-    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount), gasLimit: 100000 } );
+    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount), gasLimit: 100000 });
     return receipt.hash;
   }
 

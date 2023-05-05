@@ -10,16 +10,24 @@ const BalanceOfRose: React.FunctionComponent<Props> = ({ wrose }) => {
   const [balance, setBalance] = useState("");
 
   useEffect(() => {
-    getBalanceOfRose(wrose).then((bal) => setBalance(bal.toString()));
-    setInterval(async () => {
+    handleBalance();
+  }, []);
+
+  const handleBalance = async () => {
+    try {
       const balanceOf = await getBalanceOfRose(wrose);
       setBalance(balanceOf.toString());
-    }, 5000);
-  }, []);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
-      <div className="text-sm mt-2">Balance: {balance}</div>
+      <div className="text-sm mt-2">
+        <button onClick={() => handleBalance()}>🔄</button>
+        <span className="text-sm mt-2"> Balance: {balance}</span>
+      </div>
     </>
   );
 };
