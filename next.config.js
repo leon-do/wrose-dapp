@@ -18,6 +18,7 @@ const nextConfig = {
     CHAIN_LABEL: process.env.CHAIN_LABEL,
     CHAIN_RPC_URL: process.env.CHAIN_RPC_URL,
     CONTRACT_ADDRESS: process.env.CONTRACT_ADDRESS,
+    EXPLORER_URL: process.env.EXPLORER_URL,
     ABI: [
       {
         inputs: [],
