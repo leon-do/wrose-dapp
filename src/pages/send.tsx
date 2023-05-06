@@ -37,7 +37,7 @@ export default function Wrap() {
     displayModal(true, "Loading", "Please wait...", false);
     setShowModal(true);
     if (!(await isValidAmount())) {
-      displayModal(false, "Error", `Invalid Address or Amount. Minimum amount: 1 ${process.env.WROSE_NAME}`);
+      displayModal(false, "Error", `Invalid Address or Amount. Minimum amount: 1.01 ${process.env.WROSE_NAME}`);
       return;
     }
     setShowModal(false);
@@ -50,7 +50,7 @@ export default function Wrap() {
     const isAddress = ethers.utils.isAddress(to);
     if (!amount || !isAddress) return false;
     const balance = await getBalanceOfWrose(wrose);
-    return Number(amount) <= balance;
+    return Number(amount) + 0.01 <= balance;
   }
 
   // from <Modal />
