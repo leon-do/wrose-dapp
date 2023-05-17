@@ -10,10 +10,8 @@ export default async function metaSend(wrose: WROSE, amount: string, to: string)
   const reward = 0.01 * Number(amount);
   // fetch replay nonce
   const nonce = ethers.BigNumber.from(ethers.utils.randomBytes(32)).toString();
-  // create meta transaction
-  const metaTransaction = await wrose.createMetaWithdraw(to, amount, nonce, reward.toString());
   // sign meta transaction
-  const signature = await wrose.signMetaWithdraw(metaTransaction);
+  const signature = await wrose.signMetaWithdraw(to, amount, nonce, reward.toString());
   // POST to /api/relay
   const transaction = await fetch("/api/relay", {
     method: "POST",

@@ -30,29 +30,39 @@ export default class WROSE {
     return receipt.hash;
   }
 
-  async createMetaWithdraw(_to: string, _amount: string, _nonce: string, _reward: string) {
-    const amount = ethers.utils.parseEther(_amount);
-    const reward = ethers.utils.parseEther(_reward);
-    const hash = ethers.utils.solidityKeccak256(["address", "address", "uint256", "uint256", "uint256"], [this.contractAddress, _to, amount, _nonce, reward]);
-    return hash;
-  }
+  async signMetaWithdraw(_to: string, _amount: string, _nonce: string, _reward: string) {
+    const msgParams = JSON.stringify({
+      domain: {
+        name: process.env.WROSE_NAME || "WROSE",
+        version: "1",
+        chainId: parseInt(process.env.CHAIN_ID as string) || 42262,
+        verifyingContract: process.env.CONTRACT_ADDRESS || "0x0000000000000000000000000000000000000000",
+      },
+      message: {
+        to: await this.signerAddress(),
+        value: ethers.utils.parseEther(_amount).toString(),
+        nonce: _nonce,
+        reward: ethers.utils.parseEther(_reward).toString(),
+      },
+      primaryType: "Message",
+      types: {
+        EIP712Domain: [
+          { name: "name", type: "string" },
+          { name: "version", type: "string" },
+          { name: "chainId", type: "uint256" },
+          { name: "verifyingContract", type: "address" },
+        ],
+        Message: [
+          { name: "to", type: "address" },
+          { name: "value", type: "uint256" },
+          { name: "nonce", type: "uint256" },
+          { name: "reward", type: "uint256" },
+        ],
+      },
+    });
 
-  async signMetaWithdraw(_hash: string) {
-    const signature = await this.signer.signMessage(ethers.utils.arrayify(_hash));
+    // use ethers to send raw eth_signTypedData_v4
+    const signature = await this.signer.provider?.send("eth_signTypedData_v4", [await this.signerAddress(), msgParams]);
     return signature;
-  }
-
-  async verifyMetaWithdraw(_signature: string, _to: string, _amount: string, _nonce: string, _reward: string) {
-    const hash = await this.createMetaWithdraw(_to, _amount, _nonce, _reward);
-    const signerAddress = await this.signer.getAddress();
-    const recoveredAddress = ethers.utils.verifyMessage(ethers.utils.arrayify(hash), _signature);
-    return signerAddress === recoveredAddress;
-  }
-
-  async relayMetaWithdraw(_signature: string, _to: string, _value: string, _nonce: string, _reward: string) {
-    const value = ethers.utils.parseEther(_value);
-    const reward = ethers.utils.parseEther(_reward);
-    const receipt = await this.contract["metaWithdraw"](_signature, _to, value, _nonce, reward);
-    return receipt;
   }
 }
