@@ -2,6 +2,7 @@ import { ethers } from "ethers";
 
 export default class WROSE {
   contractAddress: string;
+  // add type to signer
   signer: ethers.Signer;
   contract: ethers.Contract;
 
@@ -62,7 +63,9 @@ export default class WROSE {
     });
 
     // use ethers to send raw eth_signTypedData_v4
-    const signature = await this.signer.provider?.send("eth_signTypedData_v4", [await this.signerAddress(), msgParams]);
+    if (this.signer.provider == null) throw new Error("No provider");
+    // @ts-ignore
+    const signature = await this.signer.provider.send("eth_signTypedData_v4", [await this.signerAddress(), msgParams]);
     return signature;
   }
 }
