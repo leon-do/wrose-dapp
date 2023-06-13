@@ -33,13 +33,13 @@ export default class WROSE {
   async signMetaWithdraw(_to: string, _amount: string, _nonce: string, _reward: string) {
     const msgParams = JSON.stringify({
       domain: {
-        name: process.env.WROSE_NAME || "WROSE",
+        name: "WROSE",
         version: "1",
-        chainId: parseInt(process.env.CHAIN_ID as string) || 42262,
-        verifyingContract: process.env.CONTRACT_ADDRESS || "0x0000000000000000000000000000000000000000",
+        chainId: 23294,
+        verifyingContract: process.env.CONTRACT_ADDRESS,
       },
       message: {
-        to: await this.signerAddress(),
+        to: _to,
         value: ethers.utils.parseEther(_amount).toString(),
         nonce: _nonce,
         reward: ethers.utils.parseEther(_reward).toString(),
