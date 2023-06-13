@@ -1,16 +1,19 @@
+import Link from "next/link";
+
 type Props = {
   success: boolean;
   title: string;
   message: string;
   handleModal: (arg0: boolean) => void;
   displayButton?: boolean;
+  href?: string;
 };
 
 /**
  * @example <Modal success={true} title="My Title" message="My message" handleModal={handleModal} />
  */
 const Modal: React.FunctionComponent<Props> = (props) => {
-  const { success, title, message, handleModal, displayButton = true } = props;
+  const { success, title, message, handleModal, displayButton = true, href = "" } = props;
 
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -34,7 +37,9 @@ const Modal: React.FunctionComponent<Props> = (props) => {
                 {title}
               </h3>
               <div className="mt-2">
-                <p className="text-sm text-gray-200 break-words">{message}</p>
+                <Link href={href} target={href !== "" ? "blank" : ""} className="text-sm text-gray-200 break-words">
+                  {message}
+                </Link>
               </div>
             </div>
           </div>
