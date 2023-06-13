@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 
 export default class WROSE {
   contractAddress: string;
@@ -21,17 +21,17 @@ export default class WROSE {
     return ethers.utils.formatEther(balance).toString();
   }
 
-  async wrap(_amount: string) {
-    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_amount), gasLimit: 100000 });
+  async wrap(_value: string) {
+    const receipt = await this.contract["deposit"]({ value: ethers.utils.parseEther(_value), gasLimit: 100000 });
     return receipt.hash;
   }
 
-  async unwrap(_amount: string) {
-    const receipt = await this.contract["withdraw"](ethers.utils.parseEther(_amount), { gasLimit: 100000 });
+  async unwrap(_value: string) {
+    const receipt = await this.contract["withdraw"](ethers.utils.parseEther(_value), { gasLimit: 100000 });
     return receipt.hash;
   }
 
-  async signMetaWithdraw(_to: string, _amount: string, _nonce: string, _reward: string) {
+  async signMetaWithdraw(_to: string, _value: string, _nonce: string, _reward: string) {
     const msgParams = JSON.stringify({
       domain: {
         name: "WROSE",
@@ -41,9 +41,9 @@ export default class WROSE {
       },
       message: {
         to: _to,
-        value: ethers.utils.parseEther(_amount).toString(),
-        nonce: _nonce,
-        reward: ethers.utils.parseEther(_reward).toString(),
+        value: _value.toString(),
+        nonce: _nonce.toString(),
+        reward: _reward.toString(),
       },
       primaryType: "Message",
       types: {
