@@ -23,6 +23,7 @@ export default function Wrap() {
   const [modalMessage, setModalMessage] = useState("");
   const [showModalSend, setShowModalSend] = useState(false);
   const [displayButton, setDisplayButton] = useState(true);
+  const [href, setHref] = useState("");
 
   async function connect() {
     const signer = await web3Onboard();
@@ -36,7 +37,7 @@ export default function Wrap() {
     displayModal(true, "Loading", "Please wait...", false);
     setShowModal(true);
     if (!(await isValidAmount())) {
-      displayModal(false, "Error", `Invalid Address or Amount. Minimum amount: 1 ${process.env.WROSE_NAME}`);
+      displayModal(false, "Error", `Invalid Address or Amount. Minimum amount: 1.01 ${process.env.WROSE_NAME}`);
       return;
     }
     setShowModal(false);
@@ -49,7 +50,7 @@ export default function Wrap() {
     const isAddress = ethers.utils.isAddress(to);
     if (!amount || !isAddress) return false;
     const balance = await getBalanceOfWrose(wrose);
-    return Number(amount) <= balance;
+    return Number(amount) + 0.01 <= balance;
   }
 
   // from <Modal />
@@ -67,7 +68,7 @@ export default function Wrap() {
     try {
       const { response, error } = await metaSend(wrose, amount, to);
       if (error) throw new Error(error);
-      displayModal(true, "Success", "Transaction Hash: " + response);
+      displayModal(true, "Success", `Transaction Hash: ${response}`, true, `${process.env.EXPLORER_URL}/tx/${response}`);
       setShowModal(true);
     } catch (error: any) {
       displayModal(false, "Error", error.message);
@@ -75,11 +76,12 @@ export default function Wrap() {
     }
   }
 
-  function displayModal(success: boolean, title: string, message: string, display = true) {
+  function displayModal(success: boolean, title: string, message: string, display = true, href = "") {
     setModalSuccess(success);
     setModalTitle(title);
     setModalMessage(message);
     setDisplayButton(display);
+    setHref(href);
   }
 
   return (
@@ -142,7 +144,7 @@ export default function Wrap() {
           </div>
         </div>
       </div>
-      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} /> : <></>}
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} href={href} /> : <></>}
       {showModalSend ? <ModalSend to={to} amount={amount} handleModalSend={handleModalSend} /> : <></>}
     </>
   );

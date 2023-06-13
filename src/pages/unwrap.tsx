@@ -21,6 +21,7 @@ export default function Wrap() {
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
   const [displayButton, setDisplayButton] = useState(true);
+  const [href, setHref] = useState("");
 
   async function connect() {
     const signer = await web3Onboard();
@@ -42,6 +43,7 @@ export default function Wrap() {
     try {
       const transactionHash = await wrose.unwrap(amount);
       displayModal(true, "Success", "Transaction Hash: " + transactionHash);
+      displayModal(true, "Success", `Transaction Hash: ${transactionHash}`, true, `${process.env.EXPLORER_URL}/tx/${transactionHash}`);
       setShowModal(true);
     } catch (error: any) {
       displayModal(false, "Error", error.message);
@@ -62,11 +64,12 @@ export default function Wrap() {
     setShowModal(false);
   }
 
-  function displayModal(success: boolean, title: string, message: string, display = true) {
+  function displayModal(success: boolean, title: string, message: string, display = true, href = "") {
     setModalSuccess(success);
     setModalTitle(title);
     setModalMessage(message);
     setDisplayButton(display);
+    setHref(href);
   }
 
   return (
@@ -132,7 +135,7 @@ export default function Wrap() {
         </div>
       </div>
 
-      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} /> : <></>}
+      {showModal ? <Modal success={modalSuccess} title={modalTitle} message={modalMessage} handleModal={handleModal} displayButton={displayButton} href={href} /> : <></>}
     </>
   );
 }
