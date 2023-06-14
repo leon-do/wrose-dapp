@@ -15,6 +15,8 @@ const signer = sapphire.wrap(new ethers.Wallet(process.env.RELAY_PRIVATE_KEY as 
 const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS as string, process.env.ABI as string, signer);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data | Error>) {
+  console.log('00000-------')
+  console.log(req.body)
   try {
     if (req.method !== "POST") return res.status(405).send({ error: "Only POST allowed" });
     const { signature, to, value, nonce, reward } = req.body;
